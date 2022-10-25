@@ -4,6 +4,7 @@
  */
 package com.argentinaprogramaanrd.anrd.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,16 @@ public class Persona {
 
     @NotNull
     @Size(min=1,max=191, message= "Tenes que ingregar algun valor para apellidos.")
-    private String lastName;
+    private String last_name;
+    
+    @NotNull
+    @Size(min=1,max=191, message= "Tenes que ingregar algun valor para trabajo.")
+    private String job;
+    
+    @NotNull
+    @Column(columnDefinition = "TEXT")
+    @Size(min=1, message= "Tenes que ingregar algun valor para descripción.")
+    private String description;
 
     @Size(min=1,max=191, message= "Tenes que ingregar algun valor para imagen.")
     private String image;

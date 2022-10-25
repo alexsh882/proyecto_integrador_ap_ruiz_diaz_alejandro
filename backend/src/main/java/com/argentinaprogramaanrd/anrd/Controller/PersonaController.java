@@ -8,6 +8,7 @@ import com.argentinaprogramaanrd.anrd.Entity.Persona;
 import com.argentinaprogramaanrd.anrd.Interface.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author operador
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class PersonaController {
 
     @Autowired
@@ -31,7 +33,7 @@ public class PersonaController {
         return iPersonaService.index();
     }
 
-    @PostMapping("personas/show/{id}")
+    @GetMapping("personas/show/{id}")
     public Persona show(@PathVariable Long id) {
         return iPersonaService.show(id);
     }
@@ -47,10 +49,14 @@ public class PersonaController {
             @RequestBody Persona persona
     ) {
         Persona old_persona = iPersonaService.show(id);
+        
         old_persona.setName(persona.getName());
-        old_persona.setLastName(persona.getLastName());
+        old_persona.setLast_name(persona.getLast_name());
+        old_persona.setJob(persona.getJob());
+        old_persona.setDescription(persona.getDescription());
         old_persona.setImage(persona.getImage());
-        iPersonaService.save(old_persona);
+
+        iPersonaService.save(persona);
 
         return old_persona;
 
