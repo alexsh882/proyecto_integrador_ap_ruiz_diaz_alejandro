@@ -23,14 +23,13 @@ public class ImpPersonaService implements IPersonaService {
 
     @Override
     public List<Persona> index() {
-        List<Persona> personas = personaRepository.findAll();
-        return personas;
+        return personaRepository.findAll();
     }
 
     @Override
     public Persona show(Long id) {
-        Persona persona = personaRepository.findById(id).orElse(null);
-        return persona;
+        return personaRepository.findById(id).orElse(null);
+
     }
 
     @Override
