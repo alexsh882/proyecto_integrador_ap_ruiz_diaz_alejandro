@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Experiencia } from 'src/app/models/experiencia';
 import { ExperienciaService } from 'src/app/service/experiencia.service';
 import { TokenService } from 'src/app/service/token.service';
-import { ModalExperienciaComponent } from './modal-experiencia.component';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-experiencias',
@@ -15,12 +13,14 @@ export class ExperienciasComponent implements OnInit {
   experiencias: Experiencia[] = [];
   open : boolean = false;
 
+  isLogged : boolean = false;
+
   faTrash = faTrash;
   faEdit = faPencil;
 
-  constructor(private experienciaService: ExperienciaService, private tokenService: TokenService, public router: Router) { }
+  constructor(private experienciaService: ExperienciaService, private tokenService: TokenService) { }
 
-  isLogged = false;
+  
 
   ngOnInit(): void {
     this.loadExperiencia();

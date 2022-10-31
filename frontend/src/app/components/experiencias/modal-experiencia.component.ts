@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
 })
 export class ModalExperienciaComponent implements OnInit {
 
-  public show = false;
+  show : boolean = false;
 
   @Input() experiencia = new Experiencia('', '', '', '')
 
   @Output() private actualizar = new EventEmitter<any>();
 
 
-  constructor(private experienciaService: ExperienciaService, public router: Router) {
+  constructor(private experienciaService: ExperienciaService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +47,7 @@ export class ModalExperienciaComponent implements OnInit {
         alert('Experiencia agregada correctamente.')
         console.log(data);
         this.actualizar.emit();
+        this.experiencia = new Experiencia('', '', '', '')
       }, err => {
         alert("Error: " + err.error.message);
         this.showModal()

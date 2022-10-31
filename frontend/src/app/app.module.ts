@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ModalExperienciaComponent } from './components/experiencias/modal-experiencia.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalEducacionComponent } from './components/educacion/modal-educacion.component';
 
 
 
@@ -37,7 +38,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    ModalExperienciaComponent
+    ModalExperienciaComponent,
+    ModalEducacionComponent
   ],
   imports: [
     BrowserModule,
