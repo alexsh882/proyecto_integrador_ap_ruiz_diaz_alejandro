@@ -10,7 +10,9 @@
                 <a href="#"><img class="img-fluid mx-2" src="../../../assets/logo_twitter.png"></a>
             </div>
             <div class="p-3">
-                <button routerLink="login" type="button" class="btn btn-outline-light">Iniciar Sesión</button>
+                
+                <button *ngIf="!isLogged" (click)="login()" type="button" class="btn btn-outline-light">Iniciar Sesión</button>
+                <button *ngIf="isLogged" (click)="logout()" type="button" class="btn btn-outline-light">Cerrar Sesión</button>
                 
             </div>
         </div>
