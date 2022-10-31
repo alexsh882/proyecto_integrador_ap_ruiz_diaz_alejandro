@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Experiencia } from 'src/app/models/experiencia';
+import { ExperienciaService } from 'src/app/service/experiencia.service';
+import { TokenService } from 'src/app/service/token.service';
+import { ModalExperienciaComponent } from './modal-experiencia.component';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-experiencias',
@@ -6,10 +12,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./experiencias.component.css']
 })
 export class ExperienciasComponent implements OnInit {
+  experiencias: Experiencia[] = [];
+  open : boolean = false;
 
-  constructor() { }
+  faTrash = faTrash;
+  faEdit = faPencil;
+
+  constructor(private experienciaService: ExperienciaService, private tokenService: TokenService, public router: Router) { }
+
+  isLogged = false;
 
   ngOnInit(): void {
+    this.loadExperiencia();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+  }
+
+  loadExperiencia(): void {
+    this.experienciaService.index().subscribe(
+      data => { this.experiencias = data; }
+    );
+  }
+
+  delete(id : any){
+    this.experienciaService.delete(id).subscribe(
+      data => {
+        alert('Experiencia eliminada correctamente.')
+        console.log(data);
+        this.loadExperiencia();
+      }, err => {
+        alert("Error: " + err.error.message);
+        console.log(err.error)        
+      }
+    );
+  }
+
+  openModal()
+  {
+    this.open = true;
   }
 
 }

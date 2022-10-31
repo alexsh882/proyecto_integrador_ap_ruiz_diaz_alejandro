@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ModalExperienciaComponent } from './components/experiencias/modal-experiencia.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     ProyectosComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ModalExperienciaComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ import { FormsModule } from '@angular/forms';
     NgCircleProgressModule.forRoot({}),
     HttpClientModule,
     FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
