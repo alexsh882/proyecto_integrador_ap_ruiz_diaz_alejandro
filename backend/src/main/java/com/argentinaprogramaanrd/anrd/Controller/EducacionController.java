@@ -46,6 +46,10 @@ public class EducacionController {
         if (StringUtils.isBlank(educacion.getDescription())) {
             return new ResponseEntity(new Message("La descripción es obligatoria."), HttpStatus.BAD_REQUEST);
         }
+
+        if (StringUtils.isBlank(educacion.getTimeLapse())) {
+            return new ResponseEntity(new Message("El tiempo de cursada es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
         if (educacionService.existsByName(educacion.getName())) {
             return new ResponseEntity(new Message("El nombre ya existe."), HttpStatus.BAD_REQUEST);
         }
@@ -72,9 +76,14 @@ public class EducacionController {
             return new ResponseEntity(new Message("La descripción es obligatoria."), HttpStatus.BAD_REQUEST);
         }
 
+        if (StringUtils.isBlank(educacion.getTimeLapse())) {
+            return new ResponseEntity(new Message("El tiempo de cursada es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
+
         Educacion educacion_original = educacionService.show(id).get();
 
         educacion_original.setName(educacion.getName());
+        educacion_original.setTimeLapse(educacion.getTimeLapse());
         educacion_original.setDescription(educacion.getDescription());
 
         educacionService.save(educacion_original);

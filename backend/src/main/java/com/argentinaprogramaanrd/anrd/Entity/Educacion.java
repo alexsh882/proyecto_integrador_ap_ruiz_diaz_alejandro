@@ -16,13 +16,17 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Educacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     private String name;
-    
+
+    @NotNull
+    private String timeLapse;
+
     @NotNull
     private String description;
 
@@ -30,13 +34,14 @@ public class Educacion {
     public Educacion() {
     }
 
-    public Educacion(String name, String description) {
+    public Educacion(String name, String description, String timeLapse) {
         this.name = name;
         this.description = description;
-    }
-    
-    //Getters and Setters
+        this.timeLapse = timeLapse;
 
+    }
+
+    //Getters and Setters
     public int getId() {
         return id;
     }
@@ -60,5 +65,13 @@ public class Educacion {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    public String getTimeLapse() {
+        return timeLapse;
+    }
+
+    public void setTimeLapse(String timeLapse) {
+        this.timeLapse = timeLapse;
+    }
+
 }
