@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +38,16 @@ public class ExperienciaLaboralController {
         List<ExperienciaLaboral> list = impExperiencia.index();
         return new ResponseEntity(list, HttpStatus.OK);
     }
+    
+    @GetMapping("experiencua-laboral/{id}")
+    public ResponseEntity<?> show(@PathVariable("id") int id){
+        if (!impExperiencia.existsById(id)) {
+            return new ResponseEntity(new Message("El id de la experiencia no existe."), HttpStatus.BAD_REQUEST);
+        }
+        
+        return new ResponseEntity(impExperiencia.show(id), HttpStatus.OK);
+    }
+    
 
     @PostMapping("experiencia-laboral")
     public ResponseEntity<?> store(@RequestBody ExperienciaLaboral exp) {
@@ -57,14 +69,15 @@ public class ExperienciaLaboralController {
         impExperiencia.save(exp);
         return new ResponseEntity(new Message("Experiencia Agregada Correctamente."), HttpStatus.OK);
     }
-
+    
+    @PutMapping("/experiencia-laboral/{id}/update")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ExperienciaLaboral exp) {
 
         if (!impExperiencia.existsById(id)) {
             return new ResponseEntity(new Message("El id de la experiencia no existe."), HttpStatus.BAD_REQUEST);
         }
-
-        if (!impExperiencia.existsByName(exp.getName()) && impExperiencia.getByName(exp.getName()).get().getId() != id) {
+        
+        if (impExperiencia.existsByName(exp.getName()) && impExperiencia.getByName(exp.getName()).get().getId() != id) {
             return new ResponseEntity(new Message("La experiencia que queres ingresar ya existe"), HttpStatus.BAD_REQUEST);
         }
 
@@ -83,11 +96,14 @@ public class ExperienciaLaboralController {
 
         ExperienciaLaboral experiencia = impExperiencia.show(id).get();
         experiencia.setName(exp.getName());
+        experiencia.setTitle(exp.getTitle());
+        experiencia.setTimeFor(exp.getTimeFor());
         experiencia.setDescription(exp.getDescription());
         impExperiencia.save(experiencia);
         return new ResponseEntity(new Message("Experiencia " + experiencia.getName() + " actualizada correctamente."), HttpStatus.OK);
     }
 
+    @DeleteMapping("/experiencia-laboral/{id}/delete")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!impExperiencia.existsById(id)) {
             return new ResponseEntity(new Message("El id de la experiencia no existe."), HttpStatus.BAD_REQUEST);

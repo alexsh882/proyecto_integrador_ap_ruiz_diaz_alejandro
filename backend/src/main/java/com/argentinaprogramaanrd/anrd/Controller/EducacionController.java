@@ -5,7 +5,6 @@
 package com.argentinaprogramaanrd.anrd.Controller;
 
 import com.argentinaprogramaanrd.anrd.Entity.Educacion;
-import com.argentinaprogramaanrd.anrd.Repository.EducacionRepository;
 import com.argentinaprogramaanrd.anrd.Security.Controller.Helpers.Message;
 import com.argentinaprogramaanrd.anrd.Service.EducacionService;
 import java.util.List;
@@ -54,7 +53,7 @@ public class EducacionController {
         return new ResponseEntity(new Message("Educación creada correctamente."), HttpStatus.OK);
     }
 
-    @PutMapping("/educacion/update/{id}")
+    @PutMapping("/educacion/{id}/update")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Educacion educacion) {
 
         if (!educacionService.existsById(id)) {
@@ -83,7 +82,7 @@ public class EducacionController {
 
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/educacion/{id}/delete")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Message("No existe la educación que busca"), HttpStatus.NOT_FOUND);

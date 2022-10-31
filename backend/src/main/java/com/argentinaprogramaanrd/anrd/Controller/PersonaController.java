@@ -76,7 +76,7 @@ public class PersonaController {
 
     //@PreAuthorize("hasRole('ADMIN')")
     @Secured("ROLE_ADMIN")
-    @PutMapping("personas/update/{id}")
+    @PutMapping("personas/{id}/update")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody Persona persona) {
 
         if (!iPersonaService.existsById(id)) {
@@ -112,7 +112,7 @@ public class PersonaController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("personas/delete/{id}")
+    @DeleteMapping("personas/{id}/delete")
     public ResponseEntity<?> delete(@PathVariable int id) {
 
         if (!iPersonaService.existsById(id)) {

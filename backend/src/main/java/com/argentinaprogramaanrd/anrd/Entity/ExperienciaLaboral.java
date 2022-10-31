@@ -25,6 +25,9 @@ public class ExperienciaLaboral {
     private String name;
 
     @NotNull
+    private String title;
+
+    @NotNull
     private String timeFor;
 
     @NotNull
@@ -38,6 +41,7 @@ public class ExperienciaLaboral {
         this.name = name;
         this.description = description;
         this.timeFor = timeFor;
+        this.title = title;
 
     }
 
@@ -73,5 +77,15 @@ public class ExperienciaLaboral {
     public void setTimeFor(String timeFor) {
         this.timeFor = timeFor;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    
 
 }
