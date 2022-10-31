@@ -24,7 +24,7 @@ public class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min=1,max=191, message= "Tenes que ingregar algun valor para nombres.")

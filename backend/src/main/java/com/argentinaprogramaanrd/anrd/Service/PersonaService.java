@@ -5,42 +5,45 @@
 package com.argentinaprogramaanrd.anrd.Service;
 
 import com.argentinaprogramaanrd.anrd.Entity.Persona;
-import com.argentinaprogramaanrd.anrd.Interface.IPersonaService;
-import com.argentinaprogramaanrd.anrd.Repository.IPersonaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.argentinaprogramaanrd.anrd.Repository.PersonaRepository;
+import java.util.Optional;
 
 /**
  *
  * @author operador
  */
 @Service
-public class ImpPersonaService implements IPersonaService {
+public class PersonaService {
 
     @Autowired
-    IPersonaRepository personaRepository;
+    PersonaRepository personaRepository;
 
-    @Override
+   
     public List<Persona> index() {
         return personaRepository.findAll();
     }
 
-    @Override
-    public Persona show(Long id) {
-        return personaRepository.findById(id).orElse(null);
-
+        
+    public Optional<Persona> show(int id) {
+        return personaRepository.findById(id);
     }
 
-    @Override
+    
     public void save(Persona persona) {
         personaRepository.save(persona);
     }
 
-    @Override
-    public void delete(Long id) {
+    
+    public void delete(int id) {
         personaRepository.deleteById(id);
 
+    }
+    
+    public boolean existsById(int id){
+        return personaRepository.existsById(id);                
     }
 
 }

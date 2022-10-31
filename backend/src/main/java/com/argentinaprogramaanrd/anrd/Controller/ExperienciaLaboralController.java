@@ -4,7 +4,7 @@
  */
 package com.argentinaprogramaanrd.anrd.Controller;
 
-import com.argentinaprogramaanrd.anrd.Service.ImpExperienciaLaboralService;
+import com.argentinaprogramaanrd.anrd.Service.ExperienciaLaboralService;
 import com.argentinaprogramaanrd.anrd.Entity.ExperienciaLaboral;
 import com.argentinaprogramaanrd.anrd.Security.Controller.Helpers.Message;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExperienciaLaboralController {
 
     @Autowired
-    ImpExperienciaLaboralService impExperiencia;
+    ExperienciaLaboralService impExperiencia;
 
     @GetMapping("experiencia-laboral")
     public ResponseEntity<List<ExperienciaLaboral>> index() {
@@ -42,6 +42,15 @@ public class ExperienciaLaboralController {
         if (StringUtils.isBlank(exp.getName())) {
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
+        
+        if (StringUtils.isBlank(exp.getTimeFor())) {
+            return new ResponseEntity(new Message("El tiempo de la experiencia es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
+        
+        if (StringUtils.isBlank(exp.getDescription())) {
+            return new ResponseEntity(new Message("La descripción es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
+        
         if (impExperiencia.existsByName(exp.getName())) {
             return new ResponseEntity(new Message("La experiencia que estás queriendo ingresar ya existe."), HttpStatus.BAD_REQUEST);
         }
@@ -62,6 +71,15 @@ public class ExperienciaLaboralController {
         if (StringUtils.isBlank(exp.getName())) {
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
+        
+        if (StringUtils.isBlank(exp.getTimeFor())) {
+            return new ResponseEntity(new Message("El tiempo de la experiencia es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
+        
+        if (StringUtils.isBlank(exp.getDescription())) {
+            return new ResponseEntity(new Message("La descripción es obligatoria."), HttpStatus.BAD_REQUEST);
+        }
+        
 
         ExperienciaLaboral experiencia = impExperiencia.show(id).get();
         experiencia.setName(exp.getName());

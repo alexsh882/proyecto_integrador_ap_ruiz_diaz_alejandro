@@ -15,33 +15,28 @@ import javax.validation.constraints.NotNull;
  * @author Alejandro
  */
 @Entity
-public class ExperienciaLaboral {
-
+public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    
     @NotNull
     private String name;
-
-    @NotNull
-    private String timeFor;
-
+    
     @NotNull
     private String description;
 
-    //Constructor
-    public ExperienciaLaboral() {
+    //Constructores
+    public Educacion() {
     }
 
-    public ExperienciaLaboral(String name, String timeFor, String description) {
+    public Educacion(String name, String description) {
         this.name = name;
         this.description = description;
-        this.timeFor = timeFor;
-
     }
-
+    
     //Getters and Setters
+
     public int getId() {
         return id;
     }
@@ -65,13 +60,5 @@ public class ExperienciaLaboral {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getTimeFor() {
-        return timeFor;
-    }
-
-    public void setTimeFor(String timeFor) {
-        this.timeFor = timeFor;
-    }
-
+    
 }

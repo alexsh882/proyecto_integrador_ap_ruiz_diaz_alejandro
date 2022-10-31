@@ -14,9 +14,10 @@ import org.springframework.stereotype.Repository;
  * @author Alejandro
  */
 @Repository
-public interface IExperienciaLaboralRepository extends JpaRepository<ExperienciaLaboral, Integer> {
-    
+public interface ExperienciaLaboralRepository extends JpaRepository<ExperienciaLaboral, Integer> {
+
     public Optional<ExperienciaLaboral> findByName(String name);
+
     public boolean existsByName(String name);
-    
+
 }

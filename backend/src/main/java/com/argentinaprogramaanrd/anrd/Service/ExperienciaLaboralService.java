@@ -8,9 +8,9 @@ import com.argentinaprogramaanrd.anrd.Entity.ExperienciaLaboral;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.argentinaprogramaanrd.anrd.Repository.IExperienciaLaboralRepository;
 import java.util.List;
 import java.util.Optional;
+import com.argentinaprogramaanrd.anrd.Repository.ExperienciaLaboralRepository;
 
 /**
  *
@@ -18,10 +18,10 @@ import java.util.Optional;
  */
 @Service
 @Transactional
-public class ImpExperienciaLaboralService {
+public class ExperienciaLaboralService {
 
     @Autowired
-    IExperienciaLaboralRepository iExperienciaLaboralRepository;
+    ExperienciaLaboralRepository iExperienciaLaboralRepository;
     
     public List<ExperienciaLaboral> index() {
         return iExperienciaLaboralRepository.findAll();
