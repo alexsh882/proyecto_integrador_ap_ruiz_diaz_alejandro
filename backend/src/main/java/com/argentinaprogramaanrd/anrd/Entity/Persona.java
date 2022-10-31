@@ -19,7 +19,6 @@ import lombok.Setter;
  * @author operador
  */
 @Entity
-@Getter @Setter
 public class Persona {
     
     @Id
@@ -45,5 +44,66 @@ public class Persona {
 
     @Size(min=1,max=191, message= "Tenes que ingregar algun valor para imagen.")
     private String image;
+
+    public Persona() {
+    }
+
+    public Persona(String name, String last_name, String job, String description, String image) {
+        this.name = name;
+        this.last_name = last_name;
+        this.job = job;
+        this.description = description;
+        this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
     
 }
